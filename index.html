@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KodsFin</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div id="welcome" class="welcome">
+    <div class="welcome-card">
+      <div class="logo">K</div>
+      <h1>KodsFin</h1>
+      <p>Seu controle financeiro simples.</p>
+      <div class="welcome-actions">
+        <button id="openFileBtn" class="btn primary">Abrir KodsFin.xlsx</button>
+        <label class="btn ghost">Abrir pelo navegador
+          <input id="fileInput" type="file" accept=".xlsx,.xls" hidden>
+        </label>
+        <button id="newFileBtn" class="btn secondary">Criar novo arquivo</button>
+      </div>
+      <small>Os dados ficam no arquivo Excel. Nada é enviado para um servidor. Ao abrir um arquivo, o botão Salvar sobrescreve o mesmo Excel.</small>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">K</span><span>KodsFin</span></div>
+      <nav>
+        <button data-view="dashboard" class="nav-btn active">Dashboard</button>
+        <button data-view="lancamentos" class="nav-btn">Lançamentos</button>
+        <button data-view="contas" class="nav-btn">Contas</button>
+        <button data-view="receitas" class="nav-btn">Receitas</button>
+        <button data-view="planejamento" class="nav-btn">Planejamento</button>
+        <button data-view="categorias" class="nav-btn">Categorias</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div id="fileName" class="file-name">Nenhum arquivo</div>
+        <button id="saveBtn" class="btn primary full">💾 Salvar Excel</button>
+        <button id="saveCopyBtn" class="btn ghost full">Salvar uma cópia</button>
+        <button id="reloadBtn" class="btn ghost full">Abrir outro arquivo</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="mobileMenu" class="icon-btn">☰</button>
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <div id="todayLabel" class="muted"></div>
+        </div>
+        <div class="top-actions">
+          <button id="quickExpense" class="btn danger">+ Despesa</button>
+          <button id="quickIncome" class="btn success">+ Receita</button>
+        </div>
+      </header>
+
+      <section id="content"></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">Novo lançamento</h3>
+        <button id="closeModal" class="icon-btn">×</button>
+      </div>
+      <form id="entryForm"></form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
